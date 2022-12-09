@@ -1,4 +1,5 @@
 import { Box, Button, Center, Container, Flex, Heading, HStack, Text } from '@chakra-ui/react'
+import { DarkModeSwitch } from '../DarkModeSwitch'
 import Link from 'next/link'
 import React from 'react'
 
@@ -35,6 +36,7 @@ function Navbar() {
           <Button variant={"ghost"}>Login</Button>
           <Button colorScheme={"cyan"}>Sign Up</Button>
         </HStack>
+        <DarkModeSwitch />
       </Flex>
     </Flex>
   )
