@@ -1,5 +1,13 @@
-import React from 'react'
-
+import {
+  Box,
+  Card,
+  CardHeader,
+  Center,
+  Grid,
+  GridItem,
+  Heading,
+} from "@chakra-ui/react";
+import React from "react";
 
 const data = {
   id: "some_id1",
@@ -16,13 +24,50 @@ const data = {
     country: "some_country",
     zip: "some_zip",
   },
-}
-
+};
 
 function Company() {
   return (
-    <div>Company</div>
-  )
+    <Grid
+      templateAreas={`"info projects users"
+                      "info bar bar"`}
+      gridTemplateRows="1fr 1fr"
+      gridTemplateColumns={"1fr 1.5fr 1.5fr"}
+      gap={4}
+      width="6xl"
+      marginX="auto"
+      marginTop={12}
+    >
+      <GridItem gridArea="info">
+        <Card height={"full"}>
+          <CardHeader>
+            <Heading>{data.name}</Heading>
+          </CardHeader>
+        </Card>
+      </GridItem>
+      <GridItem gridArea="projects">
+        <Card>
+          <CardHeader>
+            <Heading>Projects</Heading>
+          </CardHeader>
+        </Card>
+      </GridItem>
+      <GridItem gridArea="users">
+        <Card>
+          <CardHeader>
+            <Heading>Users</Heading>
+          </CardHeader>
+        </Card>
+      </GridItem>
+      <GridItem gridArea="bar">
+        <Card>
+          <CardHeader>
+            <Heading>Bar</Heading>
+          </CardHeader>
+        </Card>
+      </GridItem>
+    </Grid>
+  );
 }
 
-export default Company
+export default Company;

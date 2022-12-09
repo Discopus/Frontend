@@ -1,25 +1,4 @@
-import { AtSignIcon, InfoIcon, LinkIcon, PhoneIcon } from "@chakra-ui/icons";
-import {
-  Card,
-  CardBody,
-  Center,
-  HStack,
-  Stack,
-  VStack,
-  Image,
-  Heading,
-  Text,
-  Container,
-  CardFooter,
-  Button,
-  Flex,
-  Spacer,
-  Tag,
-  Icon
-} from "@chakra-ui/react";
-import { SP } from "next/dist/shared/lib/utils";
-import Link from "next/link";
-import React from "react";
+import { Center, VStack, Heading } from "@chakra-ui/react";
 import CompanyCard from "../../components/CompanyCard";
 
 const data = [
@@ -61,13 +40,11 @@ function Companies() {
   return (
     <>
       <Center marginTop={6}>
-        <Heading>
-          Компании партнеры
-        </Heading>
+        <Heading>Компании партнеры</Heading>
       </Center>
       <VStack paddingY={12} marginX={"auto"} spacing={12}>
         {data.map((company) => (
-          <CompanyCard company = {company}/>
+          <CompanyCard company={company} key={company.id} />
         ))}
       </VStack>
     </>
