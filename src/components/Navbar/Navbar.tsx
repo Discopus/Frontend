@@ -8,13 +8,18 @@ import {
   HStack,
   Text,
 } from "@chakra-ui/react";
-import { DarkModeSwitch } from "../DarkModeSwitch";
+import { DarkModeSwitch } from "../Main/DarkModeSwitch";
 import Link from "next/link";
 import React from "react";
 
 function Navbar() {
   return (
-    <Flex borderBottom={"1px"} borderColor={"gray.700"} position="sticky">
+    <Flex
+      borderBottom={"1px"}
+      borderColor={"gray.700"}
+      position="sticky"
+      as={"nav"}
+    >
       <Flex
         direction={"row"}
         padding={4}

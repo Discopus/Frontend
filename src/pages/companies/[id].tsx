@@ -1,12 +1,19 @@
+import { AtSignIcon, InfoIcon, LinkIcon, PhoneIcon } from "@chakra-ui/icons";
 import {
-  Box,
+  Button,
   Card,
+  CardBody,
   CardHeader,
-  Center,
   Grid,
   GridItem,
   Heading,
+  HStack,
+  Image,
+  Spacer,
+  VStack,
+  Text,
 } from "@chakra-ui/react";
+import Link from "next/link";
 import React from "react";
 
 const data = {
@@ -15,7 +22,7 @@ const data = {
   tags: ["Technology", "Startup", "Data Science", "AI", "ML", "Software"],
   websiteURL: "https://sk.ru",
   logoURL:
-    "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fglobalnetwork.io%2Fsites%2Fdefault%2Ffiles%2Fstyles%2Fmax_1300x1300%2Fpublic%2F2019-12%2FSKOLKOVO%2520campus.jpg%3Fitok%3DPhFxA6pv&f=1&nofb=1&ipt=f79a35839e5a0deecc77e9fa420f657a656b6e8b140ba99fa289205629e85f8e&ipo=images",
+    "https://www.timacad.ru/uploads/media/cache/image_sm_resize/uploads/images/20190301/1551464393_skolkovo.png",
   contacts: {
     email: "skolkovo@skolkovo.ru",
     phone: "8-800-555-35-35",
@@ -36,31 +43,72 @@ function Company() {
       gap={4}
       width="6xl"
       marginX="auto"
-      marginTop={12}
+      marginY={6}
+      alignItems="stretch"
+      minHeight={"50vh"}
     >
       <GridItem gridArea="info">
         <Card height={"full"}>
-          <CardHeader>
+          <CardBody>
+            <Image src={data.logoURL} alt={data.name} borderRadius={"sm"} />
+            <Spacer height={4} />
             <Heading>{data.name}</Heading>
-          </CardHeader>
+            <Spacer height={1} />
+            <HStack>
+              <LinkIcon />
+              <Button colorScheme={"cyan"} variant="link">
+                <Link href={data.websiteURL}>{data.websiteURL}</Link>
+              </Button>
+            </HStack>
+            <Text>
+              AAFAFAAFAAFAFAFAFSAFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            </Text>
+            {/* <VStack align={"start"}>
+              <Button variant={"link"}>
+                <AtSignIcon />
+                <Spacer width={2} />
+                <Link href={`mailto ${data.contacts.email}`}>
+                  {data.contacts.email}
+                </Link>
+              </Button>
+              <Button variant={"link"}>
+                <PhoneIcon />
+                <Spacer width={2} />
+                <Link href={`tel ${data.contacts.phone}`}>
+                  {data.contacts.phone}
+                </Link>
+              </Button>
+              <Button variant={"link"}>
+                <InfoIcon />
+                <Spacer width={2} />
+                <Link
+                  href={`https://www.google.com/maps/place/${data.contacts.address}`}
+                >
+                  <Text overflowWrap={"break-word"}>
+                    {data.contacts.address}
+                  </Text>
+                </Link>
+              </Button>
+            </VStack> */}
+          </CardBody>
         </Card>
       </GridItem>
       <GridItem gridArea="projects">
-        <Card>
+        <Card height={"full"}>
           <CardHeader>
             <Heading>Projects</Heading>
           </CardHeader>
         </Card>
       </GridItem>
       <GridItem gridArea="users">
-        <Card>
+        <Card height={"full"}>
           <CardHeader>
             <Heading>Users</Heading>
           </CardHeader>
         </Card>
       </GridItem>
       <GridItem gridArea="bar">
-        <Card>
+        <Card height={"full"}>
           <CardHeader>
             <Heading>Bar</Heading>
           </CardHeader>

@@ -20,7 +20,7 @@ import {
 import { SP } from "next/dist/shared/lib/utils";
 import Link from "next/link";
 import React from "react";
-import ProjectCard from "../../components/ProjectCard";
+import ProjectCard from "../../components/Cards/ProjectCard";
 
 const data = [
   {

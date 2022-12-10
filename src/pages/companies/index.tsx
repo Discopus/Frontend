@@ -1,5 +1,5 @@
 import { Center, VStack, Heading } from "@chakra-ui/react";
-import CompanyCard from "../../components/CompanyCard";
+import CompanyCard from "../../components/Cards/CompanyCard";
 
 const data = [
   {
