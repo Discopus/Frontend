@@ -1,22 +1,15 @@
-import { AtSignIcon, InfoIcon, LinkIcon, PhoneIcon } from "@chakra-ui/icons";
 import {
+  Button,
   Card,
   CardBody,
-  Center,
-  HStack,
-  Stack,
-  VStack,
-  Image,
-  Heading,
-  Text,
-  Container,
   CardFooter,
-  Button,
-  Flex,
+  Heading,
+  HStack,
   Spacer,
+  Stack,
   Tag,
-  Icon,
-  StackProps,
+  Text,
+  VStack,
 } from "@chakra-ui/react";
 import Link from "next/link";
 
@@ -25,7 +18,7 @@ const ProjectCard = function ({ project }: any) {
   let DateEnd: Date = new Date(project.endDate);
 
   return (
-    <Card key={project.id} width={"6xl"} direction="row">
+    <Card key={project.id} width={"full"} direction="row">
       <Stack width={"full"}>
         <CardBody padding={6} paddingBottom={0}>
           <Heading>{project.name}</Heading>

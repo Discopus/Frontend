@@ -1,4 +1,4 @@
-import { Center, VStack, Heading } from "@chakra-ui/react";
+import { Center, Heading, VStack } from "@chakra-ui/react";
 import CompanyCard from "../../components/Cards/CompanyCard";
 
 const data = [
@@ -42,7 +42,7 @@ function Companies() {
       <Center marginTop={6}>
         <Heading>Компании партнеры</Heading>
       </Center>
-      <VStack paddingY={12} marginX={"auto"} spacing={12}>
+      <VStack paddingY={12} spacing={12} width="full">
         {data.map((company) => (
           <CompanyCard company={company} key={company.id} />
         ))}

@@ -1,23 +1,23 @@
 import { AtSignIcon, InfoIcon, LinkIcon, PhoneIcon } from "@chakra-ui/icons";
 import {
+  Button,
   Card,
   CardBody,
-  HStack,
-  Stack,
-  VStack,
-  Image,
-  Heading,
-  Text,
   CardFooter,
-  Button,
+  Heading,
+  HStack,
+  Image,
   Spacer,
+  Stack,
   Tag,
+  Text,
+  VStack,
 } from "@chakra-ui/react";
 import Link from "next/link";
 
 const CompanyCard = function ({ company }: any) {
   return (
-    <Card key={company.id} width={"6xl"} direction="row">
+    <Card key={company.id} width={"full"} direction="row">
       <Image
         src={company.logoURL}
         alt={company.name}

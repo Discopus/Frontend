@@ -1,25 +1,4 @@
-import { AtSignIcon, InfoIcon, LinkIcon, PhoneIcon } from "@chakra-ui/icons";
-import {
-  Card,
-  CardBody,
-  Center,
-  HStack,
-  Stack,
-  VStack,
-  Image,
-  Heading,
-  Text,
-  Container,
-  CardFooter,
-  Button,
-  Flex,
-  Spacer,
-  Tag,
-  Icon,
-} from "@chakra-ui/react";
-import { SP } from "next/dist/shared/lib/utils";
-import Link from "next/link";
-import React from "react";
+import { Center, Heading, VStack } from "@chakra-ui/react";
 import ProjectCard from "../../components/Cards/ProjectCard";
 
 const data = [
@@ -58,7 +37,7 @@ function Companies() {
       <Center marginTop={6}>
         <Heading>Проекты</Heading>
       </Center>
-      <VStack paddingY={12} marginX={"auto"} spacing={12}>
+      <VStack paddingY={12} spacing={12} width="full">
         {data.map((project) => (
           <ProjectCard project={project} key={project.id} />
         ))}

@@ -1,31 +1,20 @@
-import {
-  Box,
-  Button,
-  Center,
-  Container,
-  Flex,
-  Heading,
-  HStack,
-  Text,
-} from "@chakra-ui/react";
-import { DarkModeSwitch } from "../Main/DarkModeSwitch";
+import { Button, Flex, Heading, HStack } from "@chakra-ui/react";
 import Link from "next/link";
-import React from "react";
 
 function Navbar() {
   return (
     <Flex
       borderBottom={"1px"}
       borderColor={"gray.700"}
+      padding={4}
       position="sticky"
       as={"nav"}
     >
       <Flex
         direction={"row"}
-        padding={4}
         justify="space-between"
         marginX={"auto"}
-        width="1188px"
+        width="1200px"
       >
         <Link href={"/"}>
           <Heading size={"lg"}>Discopus</Heading>

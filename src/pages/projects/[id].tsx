@@ -1,5 +1,3 @@
-import React from "react";
-
 const data = {
   id: "some_id1",
   name: "Проект 1",
