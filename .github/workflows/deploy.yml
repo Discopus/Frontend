@@ -1,34 +1,36 @@
-name: Deploy to Github Pages
+# Пока не работает потому что все суки хотят за это денег
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+# name: Deploy to Github Pages
 
-jobs:
-  build-and-deploy:
+# on:
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
+#     branches: [ "main" ]
 
-    runs-on: ubuntu-latest
+# jobs:
+#   build-and-deploy:
 
-    strategy:
-      matrix:
-        node-version: [18.x]
+#     runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout 🛎️
-      uses: actions/checkout@v3
-    
-    - name: Install and Build 🛠
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build
-    - run: npm run export
-    
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        folder: out
+#     strategy:
+#       matrix:
+#         node-version: [18.x]
+
+#     steps:
+#     - name: Checkout 🛎️
+#       uses: actions/checkout@v3
+
+#     - name: Install and Build 🛠
+#       uses: actions/setup-node@v3
+#       with:
+#         node-version: ${{ matrix.node-version }}
+#         cache: 'npm'
+#     - run: npm ci
+#     - run: npm run build
+#     - run: npm run export
+
+#     - name: Deploy 🚀
+#       uses: JamesIves/github-pages-deploy-action@v4
+#       with:
+#         folder: out
