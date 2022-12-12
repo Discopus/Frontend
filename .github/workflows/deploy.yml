@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Deploy to Github Pages
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
 
     steps:
     - name: Checkout 🛎️
-    - uses: actions/checkout@v3
+      uses: actions/checkout@v3
     
     - name: Install and Build 🛠
       uses: actions/setup-node@v3
