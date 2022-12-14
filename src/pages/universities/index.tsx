@@ -11,7 +11,7 @@ const data = [
       "https://ksonline.ru/wp-content/uploads/2016/01/01_06_MBA_Myasnitskaya_9_11.jpg",
     contacts: {
       email: "hse@hse.ru",
-      phone: "+ 7 495 771-32-32",
+      phone: "8 495 771-32-32",
       address: "Россия, Москва, Покровский бульвар, д. 11",
       city: "Moscow",
       country: "Russia",

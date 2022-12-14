@@ -1,4 +1,4 @@
-import { ArrowForwardIcon } from "@chakra-ui/icons";
+import { ArrowForwardIcon, CheckIcon } from "@chakra-ui/icons";
 import {
   Badge,
   Button,
@@ -61,13 +61,16 @@ function TaskCard({ data }: { data: task }) {
             </HStack>
             <Text color="gray.300">{data.description}</Text>
           </VStack>
-          <HStack>
+          <HStack width="full" justify="space-between">
             <Button
               rightIcon={<ArrowForwardIcon />}
               colorScheme="cyan"
               variant="outline"
             >
               {data.projectName}
+            </Button>
+            <Button rightIcon={<CheckIcon />} colorScheme="green">
+              Mark as done
             </Button>
           </HStack>
         </VStack>

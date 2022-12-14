@@ -1,5 +1,7 @@
 import { Center, Heading, VStack } from "@chakra-ui/react";
 import CompanyCard from "../../components/Cards/CompanyCard";
+import { CompanyForRegistration } from "../../redux/models/Company";
+import { companyAPI } from "../../redux/services/CompanyService";
 
 const data = [
   {
@@ -11,7 +13,7 @@ const data = [
       "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fglobalnetwork.io%2Fsites%2Fdefault%2Ffiles%2Fstyles%2Fmax_1300x1300%2Fpublic%2F2019-12%2FSKOLKOVO%2520campus.jpg%3Fitok%3DPhFxA6pv&f=1&nofb=1&ipt=f79a35839e5a0deecc77e9fa420f657a656b6e8b140ba99fa289205629e85f8e&ipo=images",
     contacts: {
       email: "skolkovo@skolkovo.ru",
-      phone: "8-800-555-35-35",
+      phone: "8 800 555-35-35",
       address: "Russia, Moscow, 3rd Tverskaya-Yamskaya street, 15",
       city: "Moscow",
       country: "some_country",
@@ -37,15 +39,54 @@ const data = [
 ];
 
 function Companies() {
+  // const dispatch = useAppDispatch();
+  // const { companies, isLoading, error } = useAppSelector(
+  //   (state) => state.companyReducer
+  // );
+
+  // useEffect(() => {
+  //   dispatch(fetchCompanies());
+  // }, []);
+
+  const {
+    data: companies,
+    isLoading,
+    error,
+  } = companyAPI.useGetCompaniesQuery();
+
+  const [addCompany, {}] = companyAPI.useAddCompanyMutation();
+
+  const handleCreate = async () => {
+    const newCompany: CompanyForRegistration = {
+      name: "Skolkovo",
+      tags: ["Technology", "Startup", "Data Science", "AI", "ML", "Software"],
+      logoUrl: "https://www.newsko.ru/media/5979608/skolkovo.jpg",
+      contacts: {
+        email: "skolkovo@skolkovo.ru",
+        phone: "8 800 555-35-35",
+        address: "Сиреневый бульвар, 10",
+        city: "Москва",
+        country: "Россия",
+        zip: "123456",
+      },
+    };
+
+    await addCompany(newCompany);
+  };
+
   return (
     <>
+      <button onClick={handleCreate}>Create</button>
       <Center marginTop={6}>
         <Heading>Компании партнеры</Heading>
       </Center>
       <VStack paddingY={12} spacing={12} width="full">
-        {data.map((company) => (
-          <CompanyCard company={company} key={company.id} />
-        ))}
+        {isLoading && <div>Loading...</div>}
+        {error && <div>Ошибка</div>}
+        {companies &&
+          companies.map((company) => (
+            <CompanyCard company={company} key={company.id} />
+          ))}
       </VStack>
     </>
   );

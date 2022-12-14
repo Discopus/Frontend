@@ -14,12 +14,27 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import Link from "next/link";
+import React, { FC } from "react";
+import { Company } from "../../redux/models/Company";
+import { companyAPI } from "../../redux/services/CompanyService";
 
-const CompanyCard = function ({ company }: any) {
+interface Props {
+  company: Company;
+}
+
+const CompanyCard: FC<Props> = ({ company }) => {
+  const [deleteCompany, {}] = companyAPI.useDeleteCompanyMutation();
+
+  const handleRemove = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    deleteCompany(company.id);
+  };
+
+  const parsedTags = company.tags.slice(1, -1).replaceAll('"', "").split(",");
   return (
     <Card key={company.id} width={"full"} direction="row">
       <Image
-        src={company.logoURL}
+        src={company.logoUrl}
         alt={company.name}
         boxSize="sm"
         objectFit="cover"
@@ -32,12 +47,12 @@ const CompanyCard = function ({ company }: any) {
           <HStack>
             <LinkIcon />
             <Button colorScheme={"cyan"} variant="link">
-              <Link href={company.websiteURL}>{company.websiteURL}</Link>
+              <Link href={"/"}>example.com</Link>
             </Button>
           </HStack>
           <Spacer height={4} />
           <HStack>
-            {company.tags.map((tag: any) => (
+            {parsedTags.map((tag: any) => (
               <Tag key={tag} colorScheme="cyan">
                 {tag}
               </Tag>
@@ -81,6 +96,7 @@ const CompanyCard = function ({ company }: any) {
           <Button colorScheme={"cyan"}>
             <Link href={`/companies/${company.id}`}>Подробнее</Link>
           </Button>
+          <Button onClick={handleRemove}>Delete</Button>
         </CardFooter>
       </Stack>
     </Card>
