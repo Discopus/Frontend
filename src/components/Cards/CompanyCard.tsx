@@ -23,13 +23,6 @@ interface Props {
 }
 
 const CompanyCard: FC<Props> = ({ company }) => {
-  const [deleteCompany, {}] = companyAPI.useDeleteCompanyMutation();
-
-  const handleRemove = (event: React.MouseEvent) => {
-    event.stopPropagation();
-    deleteCompany(company.id);
-  };
-
   const parsedTags = company.tags.slice(1, -1).replaceAll('"', "").split(",");
   return (
     <Card key={company.id} width={"full"} direction="row">
@@ -96,7 +89,6 @@ const CompanyCard: FC<Props> = ({ company }) => {
           <Button colorScheme={"cyan"}>
             <Link href={`/companies/${company.id}`}>Подробнее</Link>
           </Button>
-          <Button onClick={handleRemove}>Delete</Button>
         </CardFooter>
       </Stack>
     </Card>

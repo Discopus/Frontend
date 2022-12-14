@@ -1,9 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import companyReducer from "./reducers/CompanySlice";
 import { companyAPI } from "./services/CompanyService";
 
 const rootReducer = combineReducers({
-  companyReducer,
   [companyAPI.reducerPath]: companyAPI.reducer,
 });
 
