@@ -14,9 +14,8 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import React, { FC } from "react";
+import { FC } from "react";
 import { Company } from "../../redux/models/Company";
-import { companyAPI } from "../../redux/services/CompanyService";
 
 interface Props {
   company: Company;
