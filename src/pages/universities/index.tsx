@@ -1,4 +1,5 @@
 import { Center, Heading, VStack } from "@chakra-ui/react";
+import { universityAPI } from "../../redux/services/UniversityService";
 
 const data = [
   {

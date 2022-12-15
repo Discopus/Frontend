@@ -54,8 +54,9 @@ function Navbar() {
           </Button>
         </HStack>
         <HStack>
-          <Button variant={"ghost"}>Login</Button>
-          <Button colorScheme={"cyan"}>Sign Up</Button>
+          <Button colorScheme={"cyan"}>
+            <Link href={"/login"}>Login</Link>
+          </Button>
         </HStack>
         {/* <DarkModeSwitch /> */}
       </Flex>
