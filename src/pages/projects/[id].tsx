@@ -176,6 +176,7 @@ function Project() {
             <CardBody>
               {data.tasks.map((task, index) => (
                 <Card 
+                  key={index}
                   backgroundColor="gray.800"
                   marginBottom={2}
                 >
