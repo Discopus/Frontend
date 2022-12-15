@@ -1,7 +1,5 @@
-import { AtSignIcon, InfoIcon, LinkIcon, PhoneIcon, ArrowForwardIcon } from "@chakra-ui/icons";
 import {
   Badge,
-  Button,
   Card,
   CardBody,
   CardHeader,
@@ -14,8 +12,6 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import Link from "next/link";
-import TaskCard from "../../components/Cards/TaskCard";
 
 const colors: { [key: string]: string } = {
   "in progress": "yellow",
@@ -86,7 +82,7 @@ const data = {
     },
   ],
 
-  tasks: tasks
+  tasks: tasks,
 };
 
 const progressColor: { [key: string]: string } = {
@@ -117,9 +113,7 @@ function Project() {
             <Spacer height={4} />
             <Heading>{data.name}</Heading>
             <Spacer height={1} />
-            <Badge colorScheme={colors[data.status]}>
-                    {data.status}
-            </Badge>
+            <Badge colorScheme={colors[data.status]}>{data.status}</Badge>
             <Spacer height={4} />
             <HStack>
               {data.tags.map((tag, index) => (
@@ -175,11 +169,7 @@ function Project() {
             <Heading>Задачи</Heading>
             <CardBody>
               {data.tasks.map((task, index) => (
-                <Card 
-                  key={index}
-                  backgroundColor="gray.800"
-                  marginBottom={2}
-                >
+                <Card key={index} backgroundColor="gray.800" marginBottom={2}>
                   <CardBody>
                     <VStack
                       justifyContent="space-between"
@@ -187,39 +177,39 @@ function Project() {
                       gap={4}
                       height="full"
                     >
-                    <VStack gap={2} align="start">
-                      <HStack
-                        width="full"
-                        justifyContent="space-between"
-                        align="baseline"
-                      >
-                        <HStack align="baseline" gap={4}>
-                          <Heading size="md">{task.title}</Heading>
-                          <HStack>
-                            {task.tags.map((tag, index) => (
-                              <Badge key={index} colorScheme="cyan">
-                                {tag}
-                              </Badge>
-                            ))}
+                      <VStack gap={2} align="start">
+                        <HStack
+                          width="full"
+                          justifyContent="space-between"
+                          align="baseline"
+                        >
+                          <HStack align="baseline" gap={4}>
+                            <Heading size="md">{task.title}</Heading>
+                            <HStack>
+                              {task.tags.map((tag, index) => (
+                                <Badge key={index} colorScheme="cyan">
+                                  {tag}
+                                </Badge>
+                              ))}
+                            </HStack>
                           </HStack>
+                          <Badge colorScheme={progressColor[task.status]}>
+                            {task.status}
+                          </Badge>
                         </HStack>
-                        <Badge colorScheme={progressColor[task.status]}>
-                          {task.status}
-                        </Badge>
-                      </HStack>
-                      <HStack gap={1}>
-                        <Text fontWeight="semibold">Важность:</Text>
-                        <Badge colorScheme={importanceColor[task.importance]}>
-                          {task.importance}
-                        </Badge>
-                      </HStack>
-                      <Text color="gray.300">{task.description}</Text>
+                        <HStack gap={1}>
+                          <Text fontWeight="semibold">Важность:</Text>
+                          <Badge colorScheme={importanceColor[task.importance]}>
+                            {task.importance}
+                          </Badge>
+                        </HStack>
+                        <Text color="gray.300">{task.description}</Text>
+                      </VStack>
                     </VStack>
-                  </VStack>
-                </CardBody>
-              </Card>
+                  </CardBody>
+                </Card>
               ))}
-          </CardBody>
+            </CardBody>
           </CardHeader>
         </Card>
       </GridItem>

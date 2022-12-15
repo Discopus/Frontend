@@ -6,7 +6,7 @@ export const companyAPI = createApi({
   reducerPath: "companyAPI",
   tagTypes: ["Company"],
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:4000/api/",
+    baseUrl: "http://localhost:4000/api/companies/",
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.token;
       if (token) {
@@ -18,14 +18,20 @@ export const companyAPI = createApi({
   endpoints: (builder) => ({
     getCompanies: builder.query<Company[], void>({
       query: () => ({
-        url: "companies/getAll",
+        url: "getAll",
+      }),
+      providesTags: (result) => ["Company"],
+    }),
+    getCompanyById: builder.query<Company, string>({
+      query: (id) => ({
+        url: `getById/${id}`,
       }),
       providesTags: (result) => ["Company"],
     }),
     addCompany: builder.mutation<Company, CompanyForRegistration>({
       query: (company) => ({
         method: "POST",
-        url: "companies/create",
+        url: "create",
         body: company,
       }),
       invalidatesTags: ["Company"],
@@ -33,7 +39,7 @@ export const companyAPI = createApi({
     updateCompany: builder.mutation<Company, Company>({
       query: (company) => ({
         method: "PUT",
-        url: `companies/update/${company.id}`,
+        url: `update/${company.id}`,
         body: company,
       }),
       invalidatesTags: ["Company"],
@@ -41,7 +47,7 @@ export const companyAPI = createApi({
     deleteCompany: builder.mutation<Company, string>({
       query: (id) => ({
         method: "DELETE",
-        url: `companies/delete/${id}`,
+        url: `delete/${id}`,
         body: { id: id },
       }),
       invalidatesTags: ["Company"],

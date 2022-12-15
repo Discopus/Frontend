@@ -15,6 +15,12 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { FC } from "react";
+import { Company } from "../../redux/models/Company";
+import { User, UserRoleID } from "../../redux/models/User";
+import { companyAPI } from "../../redux/services/CompanyService";
+import { userAPI } from "../../redux/services/UserService";
 
 const colors: { [key: string]: string } = {
   "in progress": "yellow",
@@ -85,10 +91,15 @@ const data = {
   },
 };
 
-function Company() {
+type PageProps = {
+  company: Company;
+  users: User[];
+};
+
+const Page: FC<PageProps> = ({ company, users }) => {
   return (
     <Grid
-      gridTemplateColumns={"1fr 4fr"}
+      gridTemplateColumns={"2fr 4fr"}
       gap={5}
       width="full"
       marginX="auto"
@@ -96,11 +107,16 @@ function Company() {
       alignItems="stretch"
     >
       <GridItem as={VStack} gap={4} alignItems={"stretch"}>
-        <Card>
-          <CardBody>
-            <Image src={data.logoURL} alt={data.name} borderRadius={"sm"} />
+        <Card w="full">
+          <CardBody w="full">
+            <Image
+              objectFit={"cover"}
+              src={company.logoUrl}
+              alt={company.name}
+              borderRadius={"sm"}
+            />
             <Spacer height={4} />
-            <Heading>{data.name}</Heading>
+            <Heading>{company.name}</Heading>
             <Spacer height={1} />
             <HStack>
               <LinkIcon />
@@ -120,22 +136,22 @@ function Company() {
               <Button variant={"link"}>
                 <AtSignIcon />
                 <Spacer width={2} />
-                <Link href={`mailto:${data.contacts.email}`}>
-                  {data.contacts.email}
+                <Link href={`mailto:${company.contacts.email}`}>
+                  {company.contacts.email}
                 </Link>
               </Button>
               <Button variant={"link"}>
                 <PhoneIcon />
                 <Spacer width={2} />
-                <Link href={`tel:${data.contacts.phone}`}>
-                  {data.contacts.phone}
+                <Link href={`tel:${company.contacts.phone}`}>
+                  {company.contacts.phone}
                 </Link>
               </Button>
               <Button variant={"link"}>
                 <InfoIcon />
                 <Spacer width={2} />
                 <Link href={`https://yandex.ru/maps/-/CCUn4XUMWC`}>
-                  <Text>{data.contacts.address}</Text>
+                  <Text>{company.contacts.address}</Text>
                 </Link>
               </Button>
             </VStack>
@@ -146,7 +162,7 @@ function Company() {
             <Heading>Важные люди</Heading>
           </CardHeader>
           <CardBody as={VStack} alignItems="stretch">
-            {data.users.map((user, index) => (
+            {users.map((user, index) => (
               <HStack
                 spacing={4}
                 key={index}
@@ -157,14 +173,16 @@ function Company() {
               >
                 <Image
                   src={user.avatarURL}
-                  alt={user.name}
+                  alt={user.firstName + " " + user.lastName}
                   borderRadius={"full"}
                   boxSize={8}
                 />
                 <VStack align="start" spacing={0.5}>
-                  <Text>{user.name}</Text>
+                  <Heading size="md">
+                    {user.firstName + " " + user.lastName}
+                  </Heading>
                   <Text fontSize={"sm"} color={"gray.400"}>
-                    {user.role}
+                    {UserRoleID[user.roleId]}
                   </Text>
                 </VStack>
               </HStack>
@@ -209,6 +227,35 @@ function Company() {
         </Card>
       </GridItem>
     </Grid>
+  );
+};
+
+function Company() {
+  const router = useRouter();
+  const { id } = router.query;
+  console.log(id);
+
+  const {
+    data: company,
+    error: companyError,
+    isLoading: companyIsLoading,
+  } = companyAPI.useGetCompanyByIdQuery(id as string);
+
+  const {
+    data: users,
+    error: usersError,
+    isLoading: usersIsLoading,
+  } = userAPI.useGetUsersQuery();
+  const data = { company, users } as PageProps;
+  return (
+    <>
+      {(companyError || usersError) && (
+        <div>Something went wrong or no auth</div>
+      )}
+      {companyIsLoading && <div> Company loading...</div>}
+      {usersIsLoading && <div> Users loading...</div>}
+      {company && Page(data)}
+    </>
   );
 }
 

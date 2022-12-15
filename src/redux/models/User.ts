@@ -1,4 +1,4 @@
-enum UserRoleID {
+export enum UserRoleID {
   admin = 1,
   student,
   companyRepresentative,
@@ -21,6 +21,8 @@ export type User = {
   };
   avatarURL?: string;
 };
+
+export type UserForRegistration = Omit<User, "id">;
 
 export type UserForLogin = {
   email: string;

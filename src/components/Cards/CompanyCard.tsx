@@ -63,14 +63,14 @@ const CompanyCard: FC<Props> = ({ company }) => {
             <Button variant={"link"}>
               <AtSignIcon />
               <Spacer width={2} />
-              <Link href={`mailto ${company.contacts.email}`}>
+              <Link href={`mailto:${company.contacts.email}`}>
                 {company.contacts.email}
               </Link>
             </Button>
             <Button variant={"link"}>
               <PhoneIcon />
               <Spacer width={2} />
-              <Link href={`tel ${company.contacts.phone}`}>
+              <Link href={`tel:${company.contacts.phone}`}>
                 {company.contacts.phone}
               </Link>
             </Button>
