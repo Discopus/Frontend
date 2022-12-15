@@ -1,8 +1,9 @@
 import { Center, Heading, VStack } from "@chakra-ui/react";
+import { NextPage } from "next";
 import CompanyCard from "../../components/Cards/CompanyCard";
 import { companyAPI } from "../../redux/services/CompanyService";
 
-function Companies() {
+const Companies: NextPage = () => {
   const {
     data: companies,
     isLoading,
@@ -24,6 +25,6 @@ function Companies() {
       </VStack>
     </>
   );
-}
+};
 
 export default Companies;

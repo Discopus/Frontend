@@ -1,10 +1,16 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Company, CompanyForRegistration } from "../models/Company";
 import { RootState } from "../store";
+import { HYDRATE } from "next-redux-wrapper";
 
 export const companyAPI = createApi({
   reducerPath: "companyAPI",
   tagTypes: ["Company"],
+  extractRehydrationInfo(action, { reducerPath }) {
+    if (action.type === HYDRATE) {
+      return action.payload[reducerPath];
+    }
+  },
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:4000/api/companies/",
     prepareHeaders: (headers, { getState }) => {

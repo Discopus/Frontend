@@ -173,7 +173,7 @@ const Page: FC<PageProps> = ({ company, users }) => {
               >
                 <Image
                   src={user.avatarURL}
-                  alt={user.firstName + " " + user.lastName}
+                  alt={user.firstName[0]}
                   borderRadius={"full"}
                   boxSize={8}
                 />
@@ -233,13 +233,12 @@ const Page: FC<PageProps> = ({ company, users }) => {
 function Company() {
   const router = useRouter();
   const { id } = router.query;
-  console.log(id);
 
   const {
     data: company,
     error: companyError,
     isLoading: companyIsLoading,
-  } = companyAPI.useGetCompanyByIdQuery(id as string);
+  } = companyAPI.useGetCompanyByIdQuery(id != undefined ? id.toString() : "");
 
   const {
     data: users,
@@ -254,7 +253,7 @@ function Company() {
       )}
       {companyIsLoading && <div> Company loading...</div>}
       {usersIsLoading && <div> Users loading...</div>}
-      {company && Page(data)}
+      {company && users && Page(data)}
     </>
   );
 }

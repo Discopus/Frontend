@@ -1,10 +1,16 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
+import { HYDRATE } from "next-redux-wrapper";
 import { User, UserForRegistration } from "../models/User";
 import { RootState } from "../store";
 
 export const userAPI = createApi({
   reducerPath: "userAPI",
   tagTypes: ["User"],
+  extractRehydrationInfo(action, { reducerPath }) {
+    if (action.type === HYDRATE) {
+      return action.payload[reducerPath];
+    }
+  },
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:4000/api/users",
     prepareHeaders: (headers, { getState }) => {

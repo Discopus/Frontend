@@ -1,7 +1,20 @@
 import { Button, Flex, Heading, HStack } from "@chakra-ui/react";
 import Link from "next/link";
+import { useAuth } from "../../redux/hooks/useAuth";
+import { wrapper } from "../../redux/store";
+import UserAccount from "./UserAccount";
 
-function Navbar() {
+export const getStaticProps = wrapper.getStaticProps(
+  (store) => async (context) => {
+    const { user } = useAuth();
+    return {
+      props: {},
+    };
+  }
+);
+
+const Navbar = () => {
+  const { user } = useAuth();
   return (
     <Flex
       borderBottom={"1px"}
@@ -54,14 +67,16 @@ function Navbar() {
           </Button>
         </HStack>
         <HStack>
-          <Button colorScheme={"cyan"}>
-            <Link href={"/login"}>Login</Link>
-          </Button>
+          {user && UserAccount(user)}
+          {!user && (
+            <Button colorScheme={"cyan"}>
+              <Link href={"/login"}>Login</Link>
+            </Button>
+          )}
         </HStack>
-        {/* <DarkModeSwitch /> */}
       </Flex>
     </Flex>
   );
-}
+};
 
 export default Navbar;
