@@ -2,9 +2,11 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import authReducer from "./reducers/authSlice";
 import { authAPI } from "./services/auth";
 import { companyAPI } from "./services/CompanyService";
+import { projectAPI } from "./services/ProjectService";
 
 const rootReducer = combineReducers({
   [companyAPI.reducerPath]: companyAPI.reducer,
+  [projectAPI.reducerPath]: projectAPI.reducer,
   [authAPI.reducerPath]: authAPI.reducer,
   auth: authReducer,
 });
@@ -15,6 +17,7 @@ export const setupStore = () => {
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat([
         companyAPI.middleware,
+        projectAPI.middleware,
         authAPI.middleware,
       ]),
   });
