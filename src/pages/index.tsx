@@ -9,7 +9,7 @@ const Index = () => (
         fontSize={"5xl"}
         height="20vh"
       >
-        Добропожаловать на главную страницу Discopus
+        Добро пожаловать на главную страницу Discopus
       </Heading>
     </Center>
   </Box>
