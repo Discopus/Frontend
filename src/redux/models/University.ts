@@ -1,6 +1,7 @@
 export type University = {
   id: string;
   name: string;
+  tags: string[];
   logoURL: string;
   contacts: {
     email: string;

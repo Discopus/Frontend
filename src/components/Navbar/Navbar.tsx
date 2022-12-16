@@ -1,17 +1,7 @@
 import { Button, Flex, Heading, HStack } from "@chakra-ui/react";
 import Link from "next/link";
 import { useAuth } from "../../redux/hooks/useAuth";
-import { wrapper } from "../../redux/store";
 import UserAccount from "./UserAccount";
-
-export const getStaticProps = wrapper.getStaticProps(
-  (store) => async (context) => {
-    const { user } = useAuth();
-    return {
-      props: {},
-    };
-  }
-);
 
 const Navbar = () => {
   const { user } = useAuth();

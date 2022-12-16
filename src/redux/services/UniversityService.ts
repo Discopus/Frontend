@@ -1,10 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { HYDRATE } from "next-redux-wrapper";
-import {
-  University,
-  UniversityForRegistration,
-  UnivesityTags,
-} from "../models/University";
+import { University, UniversityForRegistration } from "../models/University";
 import { RootState } from "../store";
 
 export const universityAPI = createApi({
@@ -16,7 +12,7 @@ export const universityAPI = createApi({
     }
   },
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:4000/api/",
+    baseUrl: "http://localhost:4000/api/universities/",
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.token;
       if (token) {
@@ -28,14 +24,14 @@ export const universityAPI = createApi({
   endpoints: (builder) => ({
     getCompanies: builder.query<University[], void>({
       query: () => ({
-        url: "univecities/getAll",
+        url: "getAll",
       }),
       providesTags: (result) => ["University"],
     }),
     adduniversity: builder.mutation<University, UniversityForRegistration>({
       query: (university) => ({
         method: "POST",
-        url: "univecities/create",
+        url: "create",
         body: university,
       }),
       invalidatesTags: ["University"],

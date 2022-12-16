@@ -6,11 +6,15 @@ let user = null;
 let userToken = null;
 if (typeof localStorage !== "undefined") {
   const userString = localStorage.getItem("user");
-  user = userString !== null && userString !== "undefined" ? JSON.parse(userString) : null;
-
-  userToken = localStorage.getItem("token") !== null ? localStorage.getItem("token") : null;
+  user =
+    userString !== null && userString !== "undefined"
+      ? JSON.parse(userString)
+      : null;
+  userToken =
+    localStorage.getItem("token") !== null
+      ? localStorage.getItem("token")
+      : null;
 }
-
 
 type AuthState = {
   user: Omit<User, "password"> | null;

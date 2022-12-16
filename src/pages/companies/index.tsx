@@ -1,7 +1,16 @@
 import { Center, Heading, VStack } from "@chakra-ui/react";
-import { NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import CompanyCard from "../../components/Cards/CompanyCard";
 import { companyAPI } from "../../redux/services/CompanyService";
+import { wrapper } from "../../redux/store";
+
+// export const getServerSideProps: GetServerSideProps =
+//   wrapper.getServerSideProps((store) => async (context) => {
+//     await store.dispatch(companyAPI.endpoints.getCompanies.initiate());
+//     return {
+//       props: {},
+//     };
+//   });
 
 const Companies: NextPage = () => {
   const {

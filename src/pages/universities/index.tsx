@@ -1,4 +1,5 @@
 import { Center, Heading, VStack } from "@chakra-ui/react";
+import UniversityCard from "../../components/Cards/UniversityCard";
 import { universityAPI } from "../../redux/services/UniversityService";
 
 const data = [
@@ -36,15 +37,23 @@ const data = [
 ];
 
 function Universities() {
+  const {
+    data: universities,
+    isLoading,
+    error,
+  } = universityAPI.useGetCompaniesQuery();
   return (
     <>
       <Center marginTop={6}>
         <Heading>Университеты партнеры</Heading>
       </Center>
       <VStack paddingY={12} spacing={12} width="full">
-        {/* {data.map((company) => (
-          <CompanyCard company={company} key={company.id} />
-        ))} */}
+        {isLoading && <div>Loading...</div>}
+        {error && <div>Ошибка</div>}
+        {universities &&
+          universities.map((university) => (
+            <UniversityCard university={university} key={university.id} />
+          ))}
       </VStack>
     </>
   );

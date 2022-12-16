@@ -3,10 +3,12 @@ import { createWrapper } from "next-redux-wrapper";
 import authReducer from "./reducers/authSlice";
 import { authAPI } from "./services/auth";
 import { companyAPI } from "./services/CompanyService";
+import { universityAPI } from "./services/UniversityService";
 import { userAPI } from "./services/UserService";
 
 const rootReducer = combineReducers({
   [companyAPI.reducerPath]: companyAPI.reducer,
+  [universityAPI.reducerPath]: universityAPI.reducer,
   [authAPI.reducerPath]: authAPI.reducer,
   [userAPI.reducerPath]: userAPI.reducer,
   auth: authReducer,
@@ -18,6 +20,7 @@ export const setupStore = () => {
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat([
         companyAPI.middleware,
+        universityAPI.middleware,
         authAPI.middleware,
         userAPI.middleware,
       ]),
