@@ -21,7 +21,7 @@ interface Props {
   university: University;
 }
 
-const UniversityCard: FC<Props> = ({ university }) => {
+export const UniversityCard: FC<Props> = ({ university }) => {
   return (
     <Card key={university.id} width={"full"} direction="row">
       <Image
@@ -78,12 +78,10 @@ const UniversityCard: FC<Props> = ({ university }) => {
           </VStack>
           <Spacer width={"full"} />
           <Button colorScheme={"cyan"}>
-            <Link to={`/companies/${university.id}`}>Подробнее</Link>
+            <Link to={`/universities/${university.id}`}>Подробнее</Link>
           </Button>
         </CardFooter>
       </Stack>
     </Card>
   );
 };
-
-export default UniversityCard;

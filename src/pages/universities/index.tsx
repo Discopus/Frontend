@@ -2,7 +2,7 @@ import { Center, Heading, Text, VStack } from "@chakra-ui/react";
 import { SerializedError } from "@reduxjs/toolkit";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
 import { FC } from "react";
-import UniversityCard from "../../components/Cards/UniversityCard";
+import { UniversityCard } from "../../components/Cards/UniversityCard";
 import { useAuth } from "../../redux/hooks/useAuth";
 import { University } from "../../redux/models/University";
 import { universityAPI } from "../../redux/services/UniversityService";
@@ -43,13 +43,14 @@ function Universities() {
         <Heading>Университеты партнеры</Heading>
       </Center>
       <VStack paddingY={12} spacing={12} width="full">
-        {!user && <Text>Войдите в аккаунт, чтобы увидеть информацию</Text>}
-        {user && (
+        {user ? (
           <UniversitiesList
             universities={universities}
             isLoading={isLoading}
             error={error}
           />
+        ) : (
+          <Text>Войдите в аккаунт, чтобы увидеть информацию</Text>
         )}
       </VStack>
     </>
