@@ -1,20 +1,11 @@
 import { Center, Heading, Text, VStack } from "@chakra-ui/react";
 import { SerializedError } from "@reduxjs/toolkit";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
-import { NextPage } from "next";
 import { FC } from "react";
 import CompanyCard from "../../components/Cards/CompanyCard";
 import { useAuth } from "../../redux/hooks/useAuth";
 import { Company } from "../../redux/models/Company";
 import { companyAPI } from "../../redux/services/CompanyService";
-
-// export const getServerSideProps: GetServerSideProps =
-//   wrapper.getServerSideProps((store) => async (context) => {
-//     await store.dispatch(companyAPI.endpoints.getCompanies.initiate());
-//     return {
-//       props: {},
-//     };
-//   });
 
 type CompaniesProps = {
   companies: Company[] | undefined;
@@ -35,7 +26,7 @@ const CompaniesList: FC<CompaniesProps> = ({ companies, isLoading, error }) => {
   );
 };
 
-const Companies: NextPage = () => {
+const Companies = () => {
   const {
     data: companies,
     isLoading,

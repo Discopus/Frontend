@@ -24,6 +24,8 @@ export type User = {
 
 export type UserForRegistration = Omit<User, "id">;
 
+export type UserWithoutPassword = Omit<User, "password">;
+
 export type UserForLogin = {
   email: string;
   password: string;

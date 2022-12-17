@@ -31,7 +31,7 @@ const data = [
   },
 ];
 
-function Companies() {
+function Projects() {
   return (
     <>
       <Center marginTop={6}>
@@ -46,4 +46,4 @@ function Companies() {
   );
 }
 
-export default Companies;
+export default Projects;

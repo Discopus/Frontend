@@ -13,8 +13,8 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import Link from "next/link";
 import { FC } from "react";
+import { Link } from "react-router-dom";
 import { University } from "../../redux/models/University";
 
 interface Props {
@@ -38,7 +38,7 @@ const UniversityCard: FC<Props> = ({ university }) => {
           <HStack>
             <LinkIcon />
             <Button colorScheme={"cyan"} variant="link">
-              <Link href={"/"}>example.com</Link>
+              <Link to={"/"}>example.com</Link>
             </Button>
           </HStack>
           <Spacer height={4} />
@@ -62,7 +62,7 @@ const UniversityCard: FC<Props> = ({ university }) => {
             <Button variant={"link"}>
               <AtSignIcon />
               <Spacer width={2} />
-              <Link href={`mailto:${university.contacts.email}`}>
+              <Link to={`mailto:${university.contacts.email}`}>
                 {university.contacts.email}
               </Link>
             </Button>
@@ -70,7 +70,7 @@ const UniversityCard: FC<Props> = ({ university }) => {
               <InfoIcon />
               <Spacer width={2} />
               <Link
-                href={`https://www.google.com/maps/place/${university.contacts.address}`}
+                to={`https://www.google.com/maps/place/${university.contacts.address}`}
               >
                 {university.contacts.address}
               </Link>
@@ -78,7 +78,7 @@ const UniversityCard: FC<Props> = ({ university }) => {
           </VStack>
           <Spacer width={"full"} />
           <Button colorScheme={"cyan"}>
-            <Link href={`/companies/${university.id}`}>Подробнее</Link>
+            <Link to={`/companies/${university.id}`}>Подробнее</Link>
           </Button>
         </CardFooter>
       </Stack>

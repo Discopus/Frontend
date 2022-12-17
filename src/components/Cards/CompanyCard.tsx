@@ -13,8 +13,8 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import Link from "next/link";
 import { FC } from "react";
+import { Link } from "react-router-dom";
 import { Company } from "../../redux/models/Company";
 
 interface Props {
@@ -39,7 +39,7 @@ const CompanyCard: FC<Props> = ({ company }) => {
           <HStack>
             <LinkIcon />
             <Button colorScheme={"cyan"} variant="link">
-              <Link href={"/"}>example.com</Link>
+              <Link to={"/"}>example.com</Link>
             </Button>
           </HStack>
           <Spacer height={4} />
@@ -63,14 +63,14 @@ const CompanyCard: FC<Props> = ({ company }) => {
             <Button variant={"link"}>
               <AtSignIcon />
               <Spacer width={2} />
-              <Link href={`mailto:${company.contacts.email}`}>
+              <Link to={`mailto:${company.contacts.email}`}>
                 {company.contacts.email}
               </Link>
             </Button>
             <Button variant={"link"}>
               <PhoneIcon />
               <Spacer width={2} />
-              <Link href={`tel:${company.contacts.phone}`}>
+              <Link to={`tel:${company.contacts.phone}`}>
                 {company.contacts.phone}
               </Link>
             </Button>
@@ -78,7 +78,7 @@ const CompanyCard: FC<Props> = ({ company }) => {
               <InfoIcon />
               <Spacer width={2} />
               <Link
-                href={`https://www.google.com/maps/place/${company.contacts.address}`}
+                to={`https://www.google.com/maps/place/${company.contacts.address}`}
               >
                 {company.contacts.address}
               </Link>
@@ -86,7 +86,7 @@ const CompanyCard: FC<Props> = ({ company }) => {
           </VStack>
           <Spacer width={"full"} />
           <Button colorScheme={"cyan"}>
-            <Link href={`/companies/${company.id}`}>Подробнее</Link>
+            <Link to={`/companies/${company.id}`}>Подробнее</Link>
           </Button>
         </CardFooter>
       </Stack>

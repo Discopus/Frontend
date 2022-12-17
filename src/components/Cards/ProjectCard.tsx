@@ -11,7 +11,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 
 const ProjectCard = function ({ project }: any) {
   let DateStart: Date = new Date(project.startDate);
@@ -48,7 +48,7 @@ const ProjectCard = function ({ project }: any) {
           </VStack>
           <Spacer width={"full"} />
           <Button colorScheme={"cyan"}>
-            <Link href={`/projects/${project.id}`}>Подробнее</Link>
+            <Link to={`/projects/${project.id}`}>Подробнее</Link>
           </Button>
         </CardFooter>
       </Stack>

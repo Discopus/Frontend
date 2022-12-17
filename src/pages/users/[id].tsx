@@ -1,10 +1,8 @@
-import { NextPage } from "next";
-import { useRouter } from "next/router";
+import { useParams } from "react-router-dom";
 import { userAPI } from "../../redux/services/UserService";
 
-const UserPage: NextPage = () => {
-  const router = useRouter();
-  const { id } = router.query;
+const UserPage = () => {
+  const { id } = useParams();
   const {
     data: user,
     isLoading,

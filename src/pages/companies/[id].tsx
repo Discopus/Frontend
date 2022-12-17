@@ -14,9 +14,8 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import Link from "next/link";
-import { useRouter } from "next/router";
 import { FC } from "react";
+import { Link, useParams } from "react-router-dom";
 import { Company } from "../../redux/models/Company";
 import { User, UserRoleID } from "../../redux/models/User";
 import { companyAPI } from "../../redux/services/CompanyService";
@@ -121,7 +120,7 @@ const Page: FC<PageProps> = ({ company, users }) => {
             <HStack>
               <LinkIcon />
               <Button colorScheme={"cyan"} variant="link">
-                <Link href={data.websiteURL}>{data.websiteURL}</Link>
+                <Link to={data.websiteURL}>{data.websiteURL}</Link>
               </Button>
             </HStack>
             <Spacer height={4} />
@@ -136,21 +135,21 @@ const Page: FC<PageProps> = ({ company, users }) => {
               <Button variant={"link"}>
                 <AtSignIcon />
                 <Spacer width={2} />
-                <Link href={`mailto:${company.contacts.email}`}>
+                <Link to={`mailto:${company.contacts.email}`}>
                   {company.contacts.email}
                 </Link>
               </Button>
               <Button variant={"link"}>
                 <PhoneIcon />
                 <Spacer width={2} />
-                <Link href={`tel:${company.contacts.phone}`}>
+                <Link to={`tel:${company.contacts.phone}`}>
                   {company.contacts.phone}
                 </Link>
               </Button>
               <Button variant={"link"}>
                 <InfoIcon />
                 <Spacer width={2} />
-                <Link href={`https://yandex.ru/maps/-/CCUn4XUMWC`}>
+                <Link to={`https://yandex.ru/maps/-/CCUn4XUMWC`}>
                   <Text>{company.contacts.address}</Text>
                 </Link>
               </Button>
@@ -231,8 +230,7 @@ const Page: FC<PageProps> = ({ company, users }) => {
 };
 
 function Company() {
-  const router = useRouter();
-  const { id } = router.query;
+  const { id } = useParams();
 
   const {
     data: company,

@@ -7,8 +7,8 @@ import {
   InputRightElement,
   VStack,
 } from "@chakra-ui/react";
-import { useRouter } from "next/router";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { UserForLogin } from "../redux/models/User";
 import { authAPI } from "../redux/services/auth";
 
@@ -41,7 +41,7 @@ function PasswordInput({
 }
 
 function Login() {
-  const router = useRouter();
+  const navigate = useNavigate();
   const [formState, setFormState] = React.useState<UserForLogin>({
     email: "",
     password: "",
@@ -79,7 +79,7 @@ function Login() {
           onClick={async () => {
             try {
               await login(formState).unwrap();
-              await router.push("/");
+              navigate("/");
             } catch (error) {
               console.log(error);
             }

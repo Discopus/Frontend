@@ -9,8 +9,8 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import Link from "next/link";
 import { ReactNode } from "react";
+import { Link } from "react-router-dom";
 import { DarkModeSwitch } from "../DarkModeSwitch";
 
 const data = [
@@ -112,7 +112,7 @@ export const Footer = () => (
             <Spacer height={6} />
             <VStack align={"start"} gap={1}>
               {item.links.map((link, index) => (
-                <Link href={link.href} key={index}>
+                <Link to={link.href} key={index}>
                   <FooterButton>{link.title}</FooterButton>
                 </Link>
               ))}
