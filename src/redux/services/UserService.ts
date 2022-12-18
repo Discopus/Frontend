@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
-import { User, UserForRegistration } from "../models/User";
+import { User, UserForRegistration, UserWithoutPassword } from "../models/User";
 import { RootState } from "../store";
 
 export const userAPI = createApi({
@@ -32,6 +32,14 @@ export const userAPI = createApi({
       query: (user) => ({
         method: "POST",
         url: "/create",
+        body: user,
+      }),
+      invalidatesTags: ["User"],
+    }),
+    updateUser: builder.mutation<User, UserWithoutPassword>({
+      query: (user) => ({
+        method: "PUT",
+        url: "/update",
         body: user,
       }),
       invalidatesTags: ["User"],
