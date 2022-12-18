@@ -22,7 +22,7 @@ interface Props {
 }
 
 const CompanyCard: FC<Props> = ({ company }) => {
-  const parsedTags = company.tags.slice(1, -1).replaceAll('"', "").split(",");
+  const parsedTags = ["demo", "demo", "demo", "demo", "demo", "demo"];
   return (
     <Card key={company.id} width={"full"} direction="row">
       <Image
@@ -63,25 +63,25 @@ const CompanyCard: FC<Props> = ({ company }) => {
             <Button variant={"link"}>
               <AtSignIcon />
               <Spacer width={2} />
-              <Link to={`mailto:${company.contacts.email}`}>
+              <a href={`mailto:${company.contacts.email}`}>
                 {company.contacts.email}
-              </Link>
+              </a>
             </Button>
             <Button variant={"link"}>
               <PhoneIcon />
               <Spacer width={2} />
-              <Link to={`tel:${company.contacts.phone}`}>
+              <a href={`tel:${company.contacts.phone}`}>
                 {company.contacts.phone}
-              </Link>
+              </a>
             </Button>
             <Button variant={"link"}>
               <InfoIcon />
               <Spacer width={2} />
-              <Link
-                to={`https://www.google.com/maps/place/${company.contacts.address}`}
+              <a
+                href={`https://www.google.com/maps/place/${company.contacts.address}`}
               >
                 {company.contacts.address}
-              </Link>
+              </a>
             </Button>
           </VStack>
           <Spacer width={"full"} />

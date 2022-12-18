@@ -5,6 +5,7 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  useToast,
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
@@ -41,18 +42,41 @@ function PasswordInput({
 }
 
 function Login() {
+  const toast = useToast();
   const navigate = useNavigate();
+
   const [formState, setFormState] = React.useState<UserForLogin>({
     email: "",
     password: "",
   });
+  const [login, { isLoading, error }] = authAPI.useLoginMutation();
 
   const handleChange = ({
     target: { name, value },
   }: React.ChangeEvent<HTMLInputElement>) =>
     setFormState((prev) => ({ ...prev, [name]: value }));
 
-  const [login, { isLoading, error }] = authAPI.useLoginMutation();
+  const handleLogin = async () => {
+    try {
+      await login(formState).unwrap();
+      toast({
+        title: "Успешный вход",
+        status: "success",
+        position: "bottom-right",
+        duration: 3000,
+        isClosable: true,
+      });
+      navigate("/");
+    } catch (error) {
+      toast({
+        title: "Ошибка входа",
+        status: "error",
+        position: "bottom-right",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  };
 
   return (
     <Center h={600}>
@@ -76,14 +100,7 @@ function Login() {
         <Button
           w="full"
           colorScheme="cyan"
-          onClick={async () => {
-            try {
-              await login(formState).unwrap();
-              navigate("/");
-            } catch (error) {
-              console.log(error);
-            }
-          }}
+          onClick={handleLogin}
           isLoading={isLoading}
         >
           Login

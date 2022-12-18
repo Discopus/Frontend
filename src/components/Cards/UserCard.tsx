@@ -14,7 +14,10 @@ import {
 import { Field, Form, Formik } from "formik";
 import { FormikContextType } from "formik/dist/types";
 import { FC } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../redux/hooks/redux";
 import { User, UserWithoutPassword } from "../../redux/models/User";
+import { logout } from "../../redux/reducers/authSlice";
 import { userAPI } from "../../redux/services/UserService";
 
 type UserCardProps = {
@@ -55,8 +58,24 @@ const FieldRow: FC<React.PropsWithChildren> = ({ children }) => {
 };
 
 export const UserCard: FC<UserCardProps> = ({ user }) => {
+  const navigate = useNavigate();
   const toast = useToast();
+
   const [updateUser, { isLoading, error }] = userAPI.useUpdateUserMutation();
+  const dispatch = useAppDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    toast({
+      title: "Вы вышли из аккаунта",
+      status: "warning",
+      position: "bottom-right",
+      duration: 3000,
+      isClosable: true,
+    });
+    navigate("/");
+  };
+
   const handleSubmit = (values: UserWithoutPassword, actions: any) => {
     updateUser(values as UserWithoutPassword);
     toast({
@@ -68,6 +87,7 @@ export const UserCard: FC<UserCardProps> = ({ user }) => {
     });
     actions.setSubmitting(false);
   };
+
   return (
     <Formik initialValues={user} onSubmit={handleSubmit}>
       {(props) => (
@@ -203,6 +223,9 @@ export const UserCard: FC<UserCardProps> = ({ user }) => {
                   type="submit"
                 >
                   Сохранить
+                </Button>
+                <Button colorScheme="red" onClick={handleLogout}>
+                  Выйти из аккаунта
                 </Button>
               </VStack>
             </Form>

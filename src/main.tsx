@@ -11,6 +11,7 @@ import Main from "./pages/index";
 import Login from "./pages/login";
 import Projects from "./pages/projects";
 import Project from "./pages/projects/[id]";
+import Students from "./pages/students";
 import Tasks from "./pages/tasks";
 import Universities from "./pages/universities";
 import UserPage from "./pages/users/[id]";
@@ -26,7 +27,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         <BrowserRouter>
           <Navbar />
           <Box padding={4}>
-            <Box marginX={"auto"} width="1200px">
+            <Box marginX={"auto"} width="1200px" minH="50vh">
               <Routes>
                 <Route path="/" element={<Main />} />
                 <Route path="/login" element={<Login />} />
@@ -37,6 +38,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
                 <Route path="/projects/:id" element={<Project />} />
                 <Route path="/tasks" element={<Tasks />} />
                 <Route path="/users/:id" element={<UserPage />} />
+                <Route path="/students" element={<Students />} />
               </Routes>
             </Box>
           </Box>

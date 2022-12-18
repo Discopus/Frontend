@@ -62,18 +62,18 @@ export const UniversityCard: FC<Props> = ({ university }) => {
             <Button variant={"link"}>
               <AtSignIcon />
               <Spacer width={2} />
-              <Link to={`mailto:${university.contacts.email}`}>
+              <a href={`mailto:${university.contacts.email}`}>
                 {university.contacts.email}
-              </Link>
+              </a>
             </Button>
             <Button variant={"link"}>
               <InfoIcon />
               <Spacer width={2} />
-              <Link
-                to={`https://www.google.com/maps/place/${university.contacts.address}`}
+              <a
+                href={`https://www.google.com/maps/place/${university.contacts.address}`}
               >
                 {university.contacts.address}
-              </Link>
+              </a>
             </Button>
           </VStack>
           <Spacer width={"full"} />

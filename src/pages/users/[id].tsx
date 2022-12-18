@@ -1,4 +1,4 @@
-import { Box, Center, Heading } from "@chakra-ui/react";
+import { Box, Button, Center, Heading } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { UserCard } from "../../components/Cards/UserCard";
 import { userAPI } from "../../redux/services/UserService";

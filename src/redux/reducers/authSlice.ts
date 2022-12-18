@@ -21,10 +21,17 @@ type AuthState = {
   token: string | null;
 };
 
-const slice = createSlice({
+export const authSlice = createSlice({
   name: "auth",
   initialState: { token: userToken, user: user } as AuthState,
-  reducers: {},
+  reducers: {
+    logout: (state) => {
+      state.user = null;
+      state.token = null;
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+    },
+  },
   extraReducers: (builder) => {
     builder.addMatcher(
       authAPI.endpoints.login.matchFulfilled,
@@ -38,4 +45,6 @@ const slice = createSlice({
   },
 });
 
-export default slice.reducer;
+export const { logout } = authSlice.actions;
+
+export default authSlice.reducer;
