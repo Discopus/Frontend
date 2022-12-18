@@ -11,7 +11,7 @@ import {
   Stack,
   Tag,
   Text,
-  VStack,
+  VStack
 } from "@chakra-ui/react";
 import { FC } from "react";
 import { Link } from "react-router-dom";

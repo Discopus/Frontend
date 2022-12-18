@@ -10,7 +10,7 @@ import {
   Image,
   Spacer,
   Text,
-  VStack
+  VStack,
 } from "@chakra-ui/react";
 
 const colors: { [key: string]: string } = {
