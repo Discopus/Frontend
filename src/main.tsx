@@ -14,6 +14,7 @@ import Project from "./pages/projects/[id]";
 import Students from "./pages/students";
 import Tasks from "./pages/tasks";
 import Universities from "./pages/universities";
+import University from "./pages/universities/[id]";
 import UserPage from "./pages/users/[id]";
 import { setupStore } from "./redux/store";
 import theme from "./theme";
@@ -34,6 +35,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
                 <Route path="/companies" element={<Companies />} />
                 <Route path="/companies/:id" element={<Company />} />
                 <Route path="/universities" element={<Universities />} />
+                <Route path="/universities/:id" element={<University />} />
                 <Route path="/projects" element={<Projects />} />
                 <Route path="/projects/:id" element={<Project />} />
                 <Route path="/tasks" element={<Tasks />} />

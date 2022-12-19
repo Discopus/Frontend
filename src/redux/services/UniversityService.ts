@@ -16,9 +16,15 @@ export const universityAPI = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getCompanies: builder.query<University[], void>({
+    getUniversities: builder.query<University[], void>({
       query: () => ({
         url: "getAll",
+      }),
+      providesTags: (result) => ["University"],
+    }),
+    getUniversityById: builder.query<University, string>({
+      query: (id) => ({
+        url: `getById/${id}`,
       }),
       providesTags: (result) => ["University"],
     }),

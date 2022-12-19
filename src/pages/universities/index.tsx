@@ -35,7 +35,7 @@ function Universities() {
     data: universities,
     isLoading,
     error,
-  } = universityAPI.useGetCompaniesQuery();
+  } = universityAPI.useGetUniversitiesQuery();
   const { user } = useAuth();
   return (
     <>
