@@ -11,6 +11,9 @@ import Main from "./pages/index";
 import Login from "./pages/login";
 import Projects from "./pages/projects";
 import Project from "./pages/projects/[id]";
+import StudentRegistration from "./pages/register/student";
+import UniversityRegistration from "./pages/register/university";
+import SignUp from "./pages/signup";
 import Students from "./pages/students";
 import Tasks from "./pages/tasks";
 import Universities from "./pages/universities";
@@ -32,13 +35,27 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
               <Routes>
                 <Route path="/" element={<Main />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<SignUp />} />
+                <Route
+                  path="/register/student/:code"
+                  element={<StudentRegistration />}
+                />
+                <Route
+                  path="/register/university/:code"
+                  element={<UniversityRegistration />}
+                />
+
                 <Route path="/companies" element={<Companies />} />
                 <Route path="/companies/:id" element={<Company />} />
+
                 <Route path="/universities" element={<Universities />} />
                 <Route path="/universities/:id" element={<University />} />
+
                 <Route path="/projects" element={<Projects />} />
                 <Route path="/projects/:id" element={<Project />} />
+
                 <Route path="/tasks" element={<Tasks />} />
+
                 <Route path="/users/:id" element={<UserPage />} />
                 <Route path="/students" element={<Students />} />
               </Routes>

@@ -6,7 +6,7 @@ export const userAPI = createApi({
   reducerPath: "userAPI",
   tagTypes: ["User"],
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:4000/api/users",
+    baseUrl: "http://localhost:4000/api/users/",
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.token;
       if (token) {
@@ -18,20 +18,20 @@ export const userAPI = createApi({
   endpoints: (builder) => ({
     getUsers: builder.query<User[], void>({
       query: () => ({
-        url: "/getAll",
+        url: "getAll",
       }),
       providesTags: (result) => ["User"],
     }),
     getUserById: builder.query<User, string>({
       query: (id) => ({
-        url: `/getById/${id}`,
+        url: `getById/${id}`,
       }),
       providesTags: (result) => ["User"],
     }),
     addUser: builder.mutation<User, UserForRegistration>({
       query: (user) => ({
         method: "POST",
-        url: "/create",
+        url: "register",
         body: user,
       }),
       invalidatesTags: ["User"],
@@ -39,7 +39,7 @@ export const userAPI = createApi({
     updateUser: builder.mutation<User, UserWithoutPassword>({
       query: (user) => ({
         method: "PUT",
-        url: "/update",
+        url: "update",
         body: user,
       }),
       invalidatesTags: ["User"],

@@ -29,7 +29,7 @@ type FieldProps = {
   form: FormikContextType<User & { passwordRepeat: string }>;
 };
 
-const validateName = (value: string) => {
+export const validateName = (value: string) => {
   if (!value) {
     return "Обязательное поле";
   } else if (value.length < 2) {
@@ -40,7 +40,7 @@ const validateName = (value: string) => {
   return undefined;
 };
 
-const validateEmail = (value: string) => {
+export const validateEmail = (value: string) => {
   if (!value) {
     return "Обязательное поле";
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
@@ -49,7 +49,7 @@ const validateEmail = (value: string) => {
   return undefined;
 };
 
-const FieldRow: FC<React.PropsWithChildren> = ({ children }) => {
+export const FieldRow: FC<React.PropsWithChildren> = ({ children }) => {
   return (
     <HStack gap={2} align="start">
       {children}
@@ -92,7 +92,7 @@ export const UserCard: FC<UserCardProps> = ({ user }) => {
     <Formik initialValues={user} onSubmit={handleSubmit}>
       {(props) => (
         <HStack w="full" gap={16}>
-          <Image src={user.avatarURL} alt={user.username} boxSize={80} />
+          <Image src={user.avatarURL} alt={user.email} boxSize={80} />
           <Box w="full">
             <Form>
               <VStack align="stretch" w="full" mx="auto" my="6" gap={2}>
@@ -148,25 +148,6 @@ export const UserCard: FC<UserCardProps> = ({ user }) => {
                         <FormLabel htmlFor="email">Email</FormLabel>
                         <Input {...field} id="email" placeholder="Email" />
                         <FormErrorMessage>{form.errors.email}</FormErrorMessage>
-                      </FormControl>
-                    )}
-                  </Field>
-                  <Field name="username">
-                    {({ field, form }: FieldProps) => (
-                      <FormControl
-                        isInvalid={
-                          Boolean(form.errors.username) && form.touched.username
-                        }
-                      >
-                        <FormLabel htmlFor="username">Логин</FormLabel>
-                        <Input
-                          {...field}
-                          id="username"
-                          placeholder="Username"
-                        />
-                        <FormErrorMessage>
-                          {form.errors.username}
-                        </FormErrorMessage>
                       </FormControl>
                     )}
                   </Field>

@@ -1,4 +1,4 @@
-import { AtSignIcon, InfoIcon, LinkIcon, PhoneIcon } from "@chakra-ui/icons";
+import { AtSignIcon, InfoIcon, LinkIcon } from "@chakra-ui/icons";
 import {
   Badge,
   Button,

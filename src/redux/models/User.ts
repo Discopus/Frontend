@@ -10,15 +10,8 @@ export type User = {
   firstName: string;
   lastName: string;
   roleId: UserRoleID;
-  username: string;
   email: string;
   password: string;
-  contacts?: {
-    phone?: string;
-    github?: string;
-    website?: string;
-    linkedin?: string;
-  };
   avatarURL?: string;
 };
 

@@ -5,11 +5,12 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  Text,
   useToast,
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserForLogin } from "../redux/models/User";
 import { authAPI } from "../redux/services/auth";
 
@@ -105,6 +106,12 @@ function Login() {
         >
           Login
         </Button>
+        <Text>
+          Нет аккаунта?{" "}
+          <Button variant="link" colorScheme="cyan">
+            <Link to="/signup">Зарегистрируйся!</Link>
+          </Button>
+        </Text>
       </VStack>
     </Center>
   );
