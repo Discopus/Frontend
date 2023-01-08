@@ -110,7 +110,7 @@ const StudentList = () => {
               <Td>{user.email}</Td>
               <Td>
                 <ChakraLink color="cyan.300">
-                  <Link to={`/users/${user.id}`}>{user.id}</Link>
+                  <Link to={`/university/users/${user.id}`}>{user.id}</Link>
                 </ChakraLink>
               </Td>
               <Td>

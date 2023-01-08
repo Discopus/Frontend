@@ -1,23 +1,46 @@
-import { Center, Heading, Text, VStack } from "@chakra-ui/react";
-import { SerializedError } from "@reduxjs/toolkit";
-import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
+import { Center, Heading, VStack } from "@chakra-ui/react";
 import { FC } from "react";
 import CompanyCard from "../../components/Cards/CompanyCard";
-import { useAuth } from "../../redux/hooks/useAuth";
 import { Company } from "../../redux/models/Company";
-import { companyAPI } from "../../redux/services/CompanyService";
+
+export const companies = [
+  {
+    id: "1",
+    name: "Сбербанк",
+    logoUrl: "https://yamobi.ru/i/posts/rec018874/0_big.jpg",
+    websiteUrl: "https://www.sberbank.ru/",
+    contacts: {
+      email: "info@sber.ru",
+      phone: "+7 (999) 999-99-99",
+      address: "г. Москва, ул. Ленина, д. 1",
+      city: "Москва",
+      country: "Россия",
+      zip: "123456",
+    },
+  },
+  {
+    id: "2",
+    name: "Сколково",
+    logoUrl: "https://www.newsko.ru/media/5979608/skolkovo.jpg",
+    websiteUrl: "https://www.sk.ru/",
+    contacts: {
+      email: "info@sk.ru",
+      phone: "+7 (999) 999-99-99",
+      address: "г. Москва, ул. Ленина, д. 1",
+      city: "Москва",
+      country: "Россия",
+      zip: "123456",
+    },
+  },
+];
 
 type CompaniesProps = {
   companies: Company[] | undefined;
-  isLoading: boolean;
-  error: FetchBaseQueryError | SerializedError | undefined;
 };
 
-const CompaniesList: FC<CompaniesProps> = ({ companies, isLoading, error }) => {
+const CompaniesList: FC<CompaniesProps> = ({ companies }) => {
   return (
     <>
-      {isLoading && <div>Loading...</div>}
-      {error && <div>Ошибка</div>}
       {companies &&
         companies.map((company) => (
           <CompanyCard company={company} key={company.id} />
@@ -27,27 +50,13 @@ const CompaniesList: FC<CompaniesProps> = ({ companies, isLoading, error }) => {
 };
 
 const Companies = () => {
-  const {
-    data: companies,
-    isLoading,
-    error,
-  } = companyAPI.useGetCompaniesQuery();
-  const { user } = useAuth();
-
   return (
     <>
       <Center marginTop={6}>
         <Heading>Компании партнеры</Heading>
       </Center>
       <VStack paddingY={12} spacing={12} width="full">
-        {!user && <Text>Войдите в аккаунт, чтобы увидеть информацию</Text>}
-        {user && (
-          <CompaniesList
-            companies={companies}
-            isLoading={isLoading}
-            error={error}
-          />
-        )}
+        <CompaniesList companies={companies} />
       </VStack>
     </>
   );

@@ -11,10 +11,10 @@ import {
   Stack,
   Tag,
   Text,
-  VStack
+  VStack,
 } from "@chakra-ui/react";
 import { FC } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Company } from "../../redux/models/Company";
 
 interface Props {
@@ -22,7 +22,15 @@ interface Props {
 }
 
 const CompanyCard: FC<Props> = ({ company }) => {
-  const parsedTags = ["demo", "demo", "demo", "demo", "demo", "demo"];
+  const location = useLocation().pathname.split("/")[1];
+  const parsedTags = [
+    "Technology",
+    "Startup",
+    "Data Science",
+    "AI",
+    "ML",
+    "Software",
+  ];
   return (
     <Card key={company.id} width={"full"} direction="row">
       <Image
@@ -86,7 +94,7 @@ const CompanyCard: FC<Props> = ({ company }) => {
           </VStack>
           <Spacer width={"full"} />
           <Button colorScheme={"cyan"}>
-            <Link to={`/companies/${company.id}`}>Подробнее</Link>
+            <Link to={`/${location}/companies/${company.id}`}>Подробнее</Link>
           </Button>
         </CardFooter>
       </Stack>

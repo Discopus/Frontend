@@ -26,7 +26,7 @@ export const UniversityRepresentativeNavbar = () => {
             color="gray.400"
             _hover={{ color: "gray.200" }}
           >
-            <Link to={"/companies"}>Мой Компании</Link>
+            <Link to={"/university/companies"}>Мой Компании</Link>
           </Button>
           <Button
             variant={"link"}
@@ -34,11 +34,11 @@ export const UniversityRepresentativeNavbar = () => {
             color="gray.400"
             _hover={{ color: "gray.200" }}
           >
-            <Link to={"/students"}>Мои студенты</Link>
+            <Link to={"/university/students"}>Мои студенты</Link>
           </Button>
         </HStack>
         <HStack>
-          <Link to={`/users/university_example`}>
+          <Link to={`/university/users/university_example`}>
             <HStack>
               <Avatar />
             </HStack>

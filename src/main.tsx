@@ -51,6 +51,12 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
                 <Route path="/student/tasks" element={<Tasks />} />
                 <Route path="/student/users/:id" element={<UserPage />} />
 
+                {/* UNIVERSITY VIEW */}
+                <Route path="/university/companies" element={<Companies />} />
+                <Route path="/university/companies/:id" element={<Company />} />
+                <Route path="/university/students" element={<Students />} />
+                <Route path="/university/users/:id" element={<UserPage />} />
+
                 <Route path="/companies" element={<Companies />} />
                 <Route path="/companies/:id" element={<Company />} />
                 <Route path="/universities" element={<Universities />} />

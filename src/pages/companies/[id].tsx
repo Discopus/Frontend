@@ -16,10 +16,8 @@ import {
 } from "@chakra-ui/react";
 import { FC } from "react";
 import { Link, useParams } from "react-router-dom";
-import { Company } from "../../redux/models/Company";
+import { companies } from ".";
 import { User, UserRoleID } from "../../redux/models/User";
-import { companyAPI } from "../../redux/services/CompanyService";
-import { userAPI } from "../../redux/services/UserService";
 
 const colors: { [key: string]: string } = {
   "in progress": "yellow",
@@ -91,7 +89,7 @@ const data = {
 };
 
 type PageProps = {
-  company: Company;
+  company: typeof companies[0];
   users: User[];
 };
 
@@ -120,7 +118,7 @@ const Page: FC<PageProps> = ({ company, users }) => {
             <HStack>
               <LinkIcon />
               <Button colorScheme={"cyan"} variant="link">
-                <Link to={data.websiteURL}>{data.websiteURL}</Link>
+                <Link to={company.websiteUrl}>{company.websiteUrl}</Link>
               </Button>
             </HStack>
             <Spacer height={4} />
@@ -229,31 +227,19 @@ const Page: FC<PageProps> = ({ company, users }) => {
   );
 };
 
-function Company() {
+function CompanyPage() {
   const { id } = useParams();
-
-  const {
-    data: company,
-    error: companyError,
-    isLoading: companyIsLoading,
-  } = companyAPI.useGetCompanyByIdQuery(id != undefined ? id.toString() : "");
-
-  const {
-    data: users,
-    error: usersError,
-    isLoading: usersIsLoading,
-  } = userAPI.useGetUsersQuery();
-  const data = { company, users } as PageProps;
-  return (
-    <>
-      {(companyError || usersError) && (
-        <div>Something went wrong or no auth</div>
-      )}
-      {companyIsLoading && <div> Company loading...</div>}
-      {usersIsLoading && <div> Users loading...</div>}
-      {company && users && Page(data)}
-    </>
-  );
+  const company = companies[Number(id) - 1];
+  const users = [
+    {
+      id: "1",
+      firstName: "Eugene",
+      lastName: "Michkov",
+      roleId: 1,
+      email: "admin@discopus.com",
+    },
+  ];
+  return Page({ company, users });
 }
 
-export default Company;
+export default CompanyPage;
