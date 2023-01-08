@@ -1,9 +1,7 @@
-import { Button, Flex, Heading, HStack, Image } from "@chakra-ui/react";
-import { FC } from "react";
+import { Avatar, Button, Flex, Heading, HStack } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { NavbarProps } from "../Navbar";
 
-export const UniversityRepresentativeNavbar: FC<NavbarProps> = ({ user }) => {
+export const UniversityRepresentativeNavbar = () => {
   return (
     <Flex
       borderBottom={"1px"}
@@ -40,14 +38,9 @@ export const UniversityRepresentativeNavbar: FC<NavbarProps> = ({ user }) => {
           </Button>
         </HStack>
         <HStack>
-          <Link to={`/users/${user.id}`}>
+          <Link to={`/users/university_example`}>
             <HStack>
-              <Image
-                src={user.avatarURL}
-                alt={user.firstName}
-                borderRadius="full"
-                boxSize={10}
-              />
+              <Avatar />
             </HStack>
           </Link>
         </HStack>
