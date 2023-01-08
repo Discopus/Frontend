@@ -11,8 +11,8 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { STUDENT_EMAIL, UNIVERISTY_EMAIL } from "../data";
 import { UserForLogin } from "../redux/models/User";
-import { authAPI } from "../redux/services/auth";
 
 function PasswordInput({
   name,
@@ -50,7 +50,6 @@ function Login() {
     email: "",
     password: "",
   });
-  const [login, { isLoading, error }] = authAPI.useLoginMutation();
 
   const handleChange = ({
     target: { name, value },
@@ -58,24 +57,35 @@ function Login() {
     setFormState((prev) => ({ ...prev, [name]: value }));
 
   const handleLogin = async () => {
-    try {
-      await login(formState).unwrap();
-      toast({
-        title: "Успешный вход",
-        status: "success",
-        position: "bottom-right",
-        duration: 3000,
-        isClosable: true,
-      });
-      navigate("/");
-    } catch (error) {
-      toast({
-        title: "Ошибка входа",
-        status: "error",
-        position: "bottom-right",
-        duration: 3000,
-        isClosable: true,
-      });
+    switch (formState.email) {
+      case STUDENT_EMAIL:
+        navigate("/student/tasks");
+        toast({
+          title: "Успешный вход",
+          status: "success",
+          position: "bottom-right",
+          duration: 3000,
+          isClosable: true,
+        });
+        break;
+      case UNIVERISTY_EMAIL:
+        navigate("/university/tasks");
+        toast({
+          title: "Успешный вход",
+          status: "success",
+          position: "bottom-right",
+          duration: 3000,
+          isClosable: true,
+        });
+        break;
+      default:
+        toast({
+          title: "Ошибка входа",
+          status: "error",
+          position: "bottom-right",
+          duration: 3000,
+          isClosable: true,
+        });
     }
   };
 
@@ -98,12 +108,7 @@ function Login() {
           </InputGroup>
         </VStack>
 
-        <Button
-          w="full"
-          colorScheme="cyan"
-          onClick={handleLogin}
-          isLoading={isLoading}
-        >
+        <Button w="full" colorScheme="cyan" onClick={handleLogin}>
           Login
         </Button>
         <Text>

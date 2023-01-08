@@ -1,5 +1,6 @@
 import { AtSignIcon, InfoIcon, LinkIcon } from "@chakra-ui/icons";
 import {
+  Avatar,
   Badge,
   Button,
   Card,
@@ -14,12 +15,8 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { FC } from "react";
-import { Link, useParams } from "react-router-dom";
-import { University } from "../../redux/models/University";
-import { User, UserRoleID } from "../../redux/models/User";
-import { universityAPI } from "../../redux/services/UniversityService";
-import { userAPI } from "../../redux/services/UserService";
+import { Link } from "react-router-dom";
+import { UserRoleID } from "../../redux/models/User";
 
 const colors: { [key: string]: string } = {
   "in progress": "yellow",
@@ -37,15 +34,15 @@ const data = {
   users: [
     {
       id: "some_id1",
-      name: "Иванов Иван Иванович",
-      role: "CEO",
-      avatarURL: "https://avatars.githubusercontent.com/u/60107488?v=4",
+      roleId: 1,
+      firstName: "Иван",
+      lastName: "Иванов",
     },
     {
       id: "some_id2",
-      name: "Петров Петр Петрович",
-      role: "CTO",
-      avatarURL: "https://avatars.githubusercontent.com/u/62833220?v=4",
+      roleId: 1,
+      firstName: "Петр",
+      lastName: "Петров",
     },
   ],
   projects: [
@@ -90,12 +87,7 @@ const data = {
   },
 };
 
-type PageProps = {
-  university: University;
-  users: User[];
-};
-
-const Page: FC<PageProps> = ({ university, users }) => {
+const UniversityPage = () => {
   return (
     <Grid
       gridTemplateColumns={"2fr 4fr"}
@@ -110,12 +102,12 @@ const Page: FC<PageProps> = ({ university, users }) => {
           <CardBody w="full">
             <Image
               objectFit={"cover"}
-              src={university.logoURL}
-              alt={university.name}
+              src={data.logoURL}
+              alt={data.name}
               borderRadius={"sm"}
             />
             <Spacer height={4} />
-            <Heading>{university.name}</Heading>
+            <Heading>{data.name}</Heading>
             <Spacer height={1} />
             <HStack>
               <LinkIcon />
@@ -135,15 +127,15 @@ const Page: FC<PageProps> = ({ university, users }) => {
               <Button variant={"link"}>
                 <AtSignIcon />
                 <Spacer width={2} />
-                <Link to={`mailto:${university.contacts.email}`}>
-                  {university.contacts.email}
+                <Link to={`mailto:${data.contacts.email}`}>
+                  {data.contacts.email}
                 </Link>
               </Button>
               <Button variant={"link"}>
                 <InfoIcon />
                 <Spacer width={2} />
                 <Link to={`https://yandex.ru/maps/-/CCUn4XUMWC`}>
-                  <Text>{university.contacts.address}</Text>
+                  <Text>{data.contacts.address}</Text>
                 </Link>
               </Button>
             </VStack>
@@ -154,7 +146,7 @@ const Page: FC<PageProps> = ({ university, users }) => {
             <Heading>Важные люди</Heading>
           </CardHeader>
           <CardBody as={VStack} alignItems="stretch">
-            {users.map((user, index) => (
+            {data.users.map((user, index) => (
               <HStack
                 spacing={4}
                 key={index}
@@ -163,12 +155,7 @@ const Page: FC<PageProps> = ({ university, users }) => {
                 paddingX={4}
                 paddingY={2}
               >
-                <Image
-                  src={user.avatarURL}
-                  alt={user.firstName[0]}
-                  borderRadius={"full"}
-                  boxSize={8}
-                />
+                <Avatar name={user.firstName + " " + user.lastName} />
                 <VStack align="start" spacing={0.5}>
                   <Heading size="md">
                     {user.firstName + " " + user.lastName}
@@ -222,33 +209,4 @@ const Page: FC<PageProps> = ({ university, users }) => {
   );
 };
 
-function University() {
-  const { id } = useParams();
-
-  const {
-    data: university,
-    error: universityError,
-    isLoading: universityIsLoading,
-  } = universityAPI.useGetUniversityByIdQuery(
-    id != undefined ? id.toString() : ""
-  );
-
-  const {
-    data: users,
-    error: usersError,
-    isLoading: usersIsLoading,
-  } = userAPI.useGetUsersQuery();
-  const data = { university, users } as PageProps;
-  return (
-    <>
-      {(universityError || usersError) && (
-        <div>Something went wrong or no auth</div>
-      )}
-      {universityIsLoading && <div> university loading...</div>}
-      {usersIsLoading && <div> Users loading...</div>}
-      {university && users && Page(data)}
-    </>
-  );
-}
-
-export default University;
+export default UniversityPage;

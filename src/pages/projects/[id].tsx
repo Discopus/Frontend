@@ -12,6 +12,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import { useLocation } from "react-router-dom";
 
 const colors: { [key: string]: string } = {
   "in progress": "yellow",

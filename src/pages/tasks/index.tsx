@@ -22,6 +22,7 @@ export interface task {
   timeStart: Date;
   timeEnd: Date;
   projectName: string;
+  projectId: string;
 }
 
 const data: task[] = [
@@ -36,6 +37,7 @@ const data: task[] = [
     timeStart: new Date(),
     timeEnd: new Date(),
     projectName: "Project 1",
+    projectId: "some_id1",
   },
   {
     id: "some_id2",
@@ -48,6 +50,7 @@ const data: task[] = [
     timeStart: new Date(),
     timeEnd: new Date(),
     projectName: "Project 2",
+    projectId: "some_id2",
   },
   {
     id: "some_id3",
@@ -60,6 +63,7 @@ const data: task[] = [
     timeStart: new Date(),
     timeEnd: new Date(),
     projectName: "Project 2",
+    projectId: "some_id2",
   },
 ];
 

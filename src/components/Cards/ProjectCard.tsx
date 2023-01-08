@@ -11,11 +11,12 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const ProjectCard = function ({ project }: any) {
   let DateStart: Date = new Date(project.startDate);
   let DateEnd: Date = new Date(project.endDate);
+  const user = useLocation().pathname.split("/")[1];
 
   return (
     <Card key={project.id} width={"full"} direction="row">
@@ -48,7 +49,7 @@ const ProjectCard = function ({ project }: any) {
           </VStack>
           <Spacer width={"full"} />
           <Button colorScheme={"cyan"}>
-            <Link to={`/projects/${project.id}`}>Подробнее</Link>
+            <Link to={`/${user}/projects/${project.id}`}>Подробнее</Link>
           </Button>
         </CardFooter>
       </Stack>

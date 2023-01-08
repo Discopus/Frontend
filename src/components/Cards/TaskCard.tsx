@@ -9,6 +9,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import { Link, useLocation } from "react-router-dom";
 import { task } from "../../pages/tasks";
 
 const progressColor: { [key: string]: string } = {
@@ -24,6 +25,7 @@ const importanceColor: { [key: string]: string } = {
 };
 
 function TaskCard({ data }: { data: task }) {
+  const user = useLocation().pathname.split("/")[1];
   return (
     <Card>
       <CardBody>
@@ -67,7 +69,9 @@ function TaskCard({ data }: { data: task }) {
               colorScheme="cyan"
               variant="outline"
             >
-              {data.projectName}
+              <Link to={`/${user}/projects/${data.projectId}`}>
+                {data.projectName}
+              </Link>
             </Button>
             <Button rightIcon={<CheckIcon />} colorScheme="green">
               Mark as done

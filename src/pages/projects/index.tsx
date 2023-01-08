@@ -1,4 +1,5 @@
 import { Center, Heading, VStack } from "@chakra-ui/react";
+import { useLocation } from "react-router-dom";
 import ProjectCard from "../../components/Cards/ProjectCard";
 
 const data = [

@@ -1,4 +1,4 @@
-import { useAuth } from "../../redux/hooks/useAuth";
+import { useLocation } from "react-router-dom";
 import { UserRoleID, UserWithoutPassword } from "../../redux/models/User";
 import { StudentNavbar } from "./UserTypeNavbar/Student";
 import { UnauthorizedNavbar } from "./UserTypeNavbar/Unauthorized";
@@ -9,12 +9,12 @@ export type NavbarProps = {
 };
 
 const Navbar = () => {
-  const { user } = useAuth();
-  switch (user?.roleId) {
-    case UserRoleID.student:
-      return <StudentNavbar user={user} />;
-    case UserRoleID.universityRepresentative:
-      return <UniversityRepresentativeNavbar user={user} />;
+  const user = useLocation().pathname.split("/")[1];
+  switch (user) {
+    case "student":
+      return <StudentNavbar />;
+    case "university":
+      return <UniversityRepresentativeNavbar />;
     default:
       return <UnauthorizedNavbar />;
   }

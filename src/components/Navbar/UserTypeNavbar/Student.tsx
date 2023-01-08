@@ -1,9 +1,7 @@
-import { Button, Flex, Heading, HStack, Image } from "@chakra-ui/react";
-import { FC } from "react";
+import { Avatar, Button, Flex, Heading, HStack } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { NavbarProps } from "../Navbar";
 
-export const StudentNavbar: FC<NavbarProps> = ({ user }) => {
+export const StudentNavbar = () => {
   return (
     <Flex
       borderBottom={"1px"}
@@ -28,7 +26,7 @@ export const StudentNavbar: FC<NavbarProps> = ({ user }) => {
             color="gray.400"
             _hover={{ color: "gray.200" }}
           >
-            <Link to={"/universities"}>Мой Университет</Link>
+            <Link to={"/student/university"}>Мой Университет</Link>
           </Button>
           <Button
             variant={"link"}
@@ -36,7 +34,7 @@ export const StudentNavbar: FC<NavbarProps> = ({ user }) => {
             color="gray.400"
             _hover={{ color: "gray.200" }}
           >
-            <Link to={"/projects"}>Мои проекты</Link>
+            <Link to={"/student/projects"}>Мои проекты</Link>
           </Button>
           <Button
             variant={"link"}
@@ -44,17 +42,15 @@ export const StudentNavbar: FC<NavbarProps> = ({ user }) => {
             color="gray.400"
             _hover={{ color: "gray.200" }}
           >
-            <Link to={"/tasks"}>Мои задачи</Link>
+            <Link to={"/student/tasks"}>Мои задачи</Link>
           </Button>
         </HStack>
         <HStack>
-          <Link to={`/users/${user.id}`}>
+          <Link to={`student/users/example_user`}>
             <HStack>
-              <Image
-                src={user.avatarURL}
-                alt={user.firstName}
-                borderRadius="full"
-                boxSize={10}
+              <Avatar
+                bg="cyan.600"
+                src="https://avatars.githubusercontent.com/u/60107488"
               />
             </HStack>
           </Link>

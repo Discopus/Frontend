@@ -2,9 +2,9 @@ name: Deploy Vite + React site to Pages
 
 on:
   push:
-    branches: [main]
+    branches: [mockup]
   pull_request:
-    branches: [main]
+    branches: [mockup]
 
 jobs:
   build:
@@ -17,7 +17,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "18.12.0"
-      
+
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
 
@@ -31,12 +31,11 @@ jobs:
           path: ./dist
 
   deploy:
-    if: 
-      github.event_name == 'push' &&
-      github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' &&
+      github.ref == 'refs/heads/mockup'
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: https://discopus.github.io/Mockup/
     runs-on: ubuntu-latest
     needs: build
     steps:

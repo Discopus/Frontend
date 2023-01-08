@@ -34,7 +34,6 @@ const data: UserData[] = [
     firstName: "Евгений",
     lastName: "Мичков",
     roleId: 2,
-    username: "ParzivalEugene",
     email: "a@ya.ru",
     avatarURL: "https://avatars.githubusercontent.com/u/60107488?s=2048&v=4",
     status: "active",
@@ -44,7 +43,6 @@ const data: UserData[] = [
     firstName: "Афанасий",
     lastName: "Долгорукий",
     roleId: 2,
-    username: "AFA_long_hand",
     email: "long_hand@ya.ru",
     avatarURL: "https://avatars.githubusercontent.com/u/36966491?v=4&s=1024",
     status: "pending",
@@ -55,7 +53,6 @@ const data: UserData[] = [
     firstName: "Дмитрий",
     lastName: "Белик",
     roleId: 2,
-    username: "13belka13",
     email: "x@ya.ru",
     avatarURL: "https://avatars.githubusercontent.com/u/62833220?s=1024&v=4",
     status: "pending",
@@ -113,7 +110,7 @@ const StudentList = () => {
               <Td>{user.email}</Td>
               <Td>
                 <ChakraLink color="cyan.300">
-                  <Link to={`/users/${user.id}`}>{user.username}</Link>
+                  <Link to={`/users/${user.id}`}>{user.id}</Link>
                 </ChakraLink>
               </Td>
               <Td>
