@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { STUDENT_EMAIL, UNIVERISTY_EMAIL } from "../data";
+import { STUDENT_EMAIL, UNIVERISTY_EMAIL, COMPANY_EMAIL } from "../data";
 import { UserForLogin } from "../redux/models/User";
 
 function PasswordInput({
@@ -78,6 +78,16 @@ function Login() {
           isClosable: true,
         });
         break;
+        case COMPANY_EMAIL:
+          navigate("/company/tasks");
+          toast({
+            title: "Успешный вход",
+            status: "success",
+            position: "bottom-right",
+            duration: 3000,
+            isClosable: true,
+          });
+          break;
       default:
         toast({
           title: "Ошибка входа",

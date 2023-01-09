@@ -1,4 +1,4 @@
-export type University = {
+export interface University {
   id: string;
   name: string;
   tags: string[];

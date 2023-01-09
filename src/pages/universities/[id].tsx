@@ -15,8 +15,10 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
-import { UserRoleID } from "../../redux/models/User";
+import { FC } from "react";
+import { Link, useParams } from "react-router-dom";
+import { universities } from ".";
+import { User, UserRoleID } from "../../redux/models/User";
 
 const colors: { [key: string]: string } = {
   "in progress": "yellow",
@@ -87,7 +89,12 @@ const data = {
   },
 };
 
-const UniversityPage = () => {
+type PageProps = {
+  company: typeof universities[0];
+  users: User[];
+};
+
+const Page: FC<PageProps> = ({ company, users }) => {
   return (
     <Grid
       gridTemplateColumns={"2fr 4fr"}
@@ -208,5 +215,20 @@ const UniversityPage = () => {
     </Grid>
   );
 };
+
+function UniversityPage() {
+  const { id } = useParams();
+  const university = universities[Number(id) - 1];
+  const users = [
+    {
+      id: "1",
+      firstName: "Eugene",
+      lastName: "Michkov",
+      roleId: 1,
+      email: "admin@discopus.com",
+    },
+  ];
+  return Page({ university, users });
+}
 
 export default UniversityPage;

@@ -18,7 +18,7 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import { FC } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { UserWithoutPassword } from "../../redux/models/User";
 
 type AdditionalUserData = {
@@ -88,6 +88,7 @@ const StatusTag: FC<AdditionalUserData> = ({ status, code }) => {
 };
 
 const StudentList = () => {
+  const location = useLocation().pathname.split("/")[1];
   return (
     <TableContainer mt={12}>
       <Table variant="striped">
@@ -110,7 +111,7 @@ const StudentList = () => {
               <Td>{user.email}</Td>
               <Td>
                 <ChakraLink color="cyan.300">
-                  <Link to={`/university/users/${user.id}`}>{user.id}</Link>
+                  <Link to={`/${location}/users/${user.id}`}>{user.id}</Link>
                 </ChakraLink>
               </Td>
               <Td>

@@ -14,7 +14,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { FC } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { University } from "../../redux/models/University";
 
 interface Props {
@@ -22,6 +22,7 @@ interface Props {
 }
 
 export const UniversityCard: FC<Props> = ({ university }) => {
+  const location = useLocation().pathname.split("/")[1];
   return (
     <Card key={university.id} width={"full"} direction="row">
       <Image
@@ -78,7 +79,7 @@ export const UniversityCard: FC<Props> = ({ university }) => {
           </VStack>
           <Spacer width={"full"} />
           <Button colorScheme={"cyan"}>
-            <Link to={`/universities/${university.id}`}>Подробнее</Link>
+            <Link to={`/${location}/universities/${university.id}`}>Подробнее</Link>
           </Button>
         </CardFooter>
       </Stack>
